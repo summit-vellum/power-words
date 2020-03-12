@@ -1,0 +1,26 @@
+{
+    "name": "quill/powerwords",
+    "description": "",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Quill\\PowerWords\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Quill\\PowerWords\\PowerWordsServiceProvider"
+            ]
+        }
+    }
+}
