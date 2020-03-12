@@ -7,7 +7,7 @@ use Vellum\Models\BaseModel;
 class PowerWords extends BaseModel
 {
 
-    protected $table = 'powerwords';
+    protected $table = 'power_words';
 
     public function history()
     {

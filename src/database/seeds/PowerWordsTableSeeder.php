@@ -12,7 +12,31 @@ class PowerWordsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(PowerWords::class, 10)->create();
+        $old_db = DB::connection('olddb');
+
+        $itemsPerBatch = 500;
+
+    	$powerWords = $old_db->table('tbl_power_words');
+
+    	$this->command->getOutput()->progressStart($powerWords->count());
+
+    	$vellumPowerWords = $powerWords->orderBy('pwid')->chunk($itemsPerBatch, function($powerWords){
+
+    		foreach ($powerWords as $powerWord) {
+    			$migratedPowerWord = new PowerWords;
+        		$migratedPowerWord->create([
+        			'site_id' => $powerWord->site_id,
+        			'parent_id' => $powerWord->pw_parent_id,
+        			'word' => $powerWord->power_words
+        		]);
+
+        		$this->command->getOutput()->progressAdvance();
+    		}
+
+    	});
+
+    	$this->command->getOutput()->progressFinish();
+
     }
 
 }

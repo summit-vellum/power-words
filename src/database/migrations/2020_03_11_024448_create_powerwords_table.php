@@ -13,9 +13,13 @@ class CreatePowerwordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('powerwords', function (Blueprint $table) {
+        Schema::create('power_words', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('site_id');
+            $table->integer('parent_id');
+            $table->string('word', 200);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +30,6 @@ class CreatePowerwordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('powerwords');
+        Schema::dropIfExists('power_words');
     }
 }
