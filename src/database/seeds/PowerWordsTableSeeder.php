@@ -25,6 +25,7 @@ class PowerWordsTableSeeder extends Seeder
     		foreach ($powerWords as $powerWord) {
     			$migratedPowerWord = new PowerWords;
         		$migratedPowerWord->create([
+        			'id' => $powerWord->pwid,
         			'site_id' => $powerWord->site_id,
         			'parent_id' => $powerWord->pw_parent_id,
         			'word' => $powerWord->power_words
