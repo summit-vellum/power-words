@@ -17,10 +17,10 @@ class PowerWordsResource extends PowerWords implements Formable
 
             Select::make('Parent Word', 'parent_id')
             	->relation('word', 'word')
-            	->modify(function($power_words, $post){
-            		return isset($post->parent_power_words) ? $post->parent_power_words->word : '';
+            	->modify(function($parent_id, $powerWord){
+            		return ($powerWord->parent_power_words) ? $powerWord->parent_power_words->word : '';
             	})
-            	->options(PowerWords::class)
+            	->options(PowerWords::whereIsParentPowerWords()->pluck('word', 'id')->toArray())
             	->container([
 	            	'sectionName' => 'parent-word',
 	            	'view' => view('vellum::containers.render-select', ['yieldName'=>'parent-word'])
@@ -31,13 +31,17 @@ class PowerWordsResource extends PowerWords implements Formable
             	->classes('cf-input')
             	->searchable()
             	->help('Please enter unique power word'),
+
+           	Text::make('Deleted at')
+            ->hideFromIndex()
+            ->hideOnForms()
         ];
     }
 
     public function filters()
     {
         return [
-            //
+            \Quill\PowerWords\Filters\ParentId::class
         ];
     }
 

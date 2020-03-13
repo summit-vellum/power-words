@@ -16,7 +16,7 @@ class CreatePowerwordsTable extends Migration
         Schema::create('power_words', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('site_id');
-            $table->integer('parent_id');
+            $table->integer('parent_id')->default(0)->nullable();
             $table->string('word', 200);
             $table->timestamps();
             $table->softDeletes();

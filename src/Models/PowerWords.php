@@ -10,6 +10,11 @@ class PowerWords extends BaseModel
 
     protected $table = 'power_words';
 
+    public function scopeWhereIsParentPowerWords($query)
+    {
+    	$query->where('parent_id', 0);
+    }
+
     public function parent_power_words()
     {
     	return $this->hasOne(PowerWords::class, 'id', 'parent_id');
