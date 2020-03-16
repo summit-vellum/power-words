@@ -13,6 +13,6 @@
 
 Route::group(['middleware' => 'web'], function() {
 
-    // ... Route logic goes here
+    Route::post('power-words/check-usage', '\Quill\PowerWords\Http\Controllers\PowerWordsController@checkUsage');
 
 });

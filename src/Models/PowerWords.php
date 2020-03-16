@@ -10,6 +10,10 @@ class PowerWords extends BaseModel
 
     protected $table = 'power_words';
 
+    public function scoperWhereWord($query, $key)
+    {
+    	$query->where('word', 'LIKE', $key);
+    }
     public function scopeWhereIsParentPowerWords($query)
     {
     	$query->where('parent_id', 0);
