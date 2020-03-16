@@ -48,9 +48,19 @@ class PowerWordsResource extends PowerWords implements Formable
 
     public function actions()
     {
+    	$deleteDialogNotif = [
+    		'header' => 'Are you sure you want to delete this power word? You may no longer undo this once deleted.',
+    		'valueDisplayedIn' => [
+    			'title' => 'word',
+    			'subText' => ''
+    		],
+    		'dismiss' => 'Cancel',
+    		'continue' => 'Yes, Delete this power word'
+    	];
+
         return [
             new \Vellum\Actions\EditAction,
-            new \Vellum\Actions\DeleteAction,
+            new \Vellum\Actions\DeleteAction($deleteDialogNotif, true),
         ];
     }
 
