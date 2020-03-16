@@ -28,6 +28,10 @@ class PowerWordsServiceProvider extends ServiceProvider
         	PowerWordsRootResource::observe(PowerWordsObserver::class);
         }
 
+        $this->publishes([
+        	__DIR__ . '/public/js/validate_power_word.js' => public_path('vendor/powerwords/js/validate_power_word.js')
+        ], 'powerwords.validate.js');
+
         // $this->publishes([
         //     __DIR__ . '/config/powerwords.php' => config_path('powerwords.php'),
         // ], 'powerwords.config');

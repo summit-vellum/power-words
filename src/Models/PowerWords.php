@@ -12,7 +12,7 @@ class PowerWords extends BaseModel
 
     public function scoperWhereWord($query, $key)
     {
-    	$query->where('word', 'LIKE', $key);
+    	$query->where('word', 'like', $key);
     }
     public function scopeWhereIsParentPowerWords($query)
     {

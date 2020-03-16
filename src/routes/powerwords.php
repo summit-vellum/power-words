@@ -13,6 +13,9 @@
 
 Route::group(['middleware' => 'web'], function() {
 
-    Route::post('power-words/check-usage', '\Quill\PowerWords\Http\Controllers\PowerWordsController@checkUsage');
+	Route::group(['prefix' => 'power-words'], function () {
+		Route::post('/check-usage', '\Quill\PowerWords\Http\Controllers\PowerWordsController@checkUsage');
+		Route::post('/validate-word', '\Quill\PowerWords\Http\Controllers\PowerWordsController@validateWord');
+	});
 
 });

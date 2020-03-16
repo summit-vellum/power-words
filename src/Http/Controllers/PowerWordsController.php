@@ -29,6 +29,14 @@ class PowerWordsController extends Controller
         return view('powerwords::index');
     }
 
+    /**
+     * Validates whether the seo title contains a power word
+     *
+     * @param      \Illuminate\Http\Request             $request     The request
+     * @param      \Quill\PowerWords\Models\PowerWords  $powerWords  The power words
+     *
+     * @return     json                               if word exists
+     */
     public function checkUsage(Request $request, PowerWords $powerWords)
     {
     	$seoTitle = $request->get('seoTitle');
@@ -46,6 +54,22 @@ class PowerWordsController extends Controller
     	return response()->json([
     		'aWordExists' => $aWordExists
     	]);
+    }
+
+    public function validateWord(Request $request, PowerWords $powerWords)
+    {
+    	$success = true;
+    	$word = $request->get('word');
+    	$exists = $powerWords->where('word', $word)->get();
+
+    	if (count($exists) > 0) {
+    		$success = false;
+    	}
+
+    	return response()->json([
+    		'success' => $success
+    	]);
+
     }
 
     /**
