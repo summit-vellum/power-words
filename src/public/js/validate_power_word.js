@@ -4,7 +4,7 @@ $('#word').on('keyup', function(){
 		pwInfo = $('#help-'+powerWord.attr('id')),
 		word = powerWord.val();
 
-	ajaxPartialUpdate('/power-words/validate-word', 'POST', {word:word}).then(function(response){
+	ajaxPartialUpdate('/power-words/validate-word', 'POST', {word:word, id:$('#id').val()}).then(function(response){
 		if (!response.success){
 			pwInfo.find('.help-validated-check').addClass('hide');
 			pwInfo.find('.help-info').addClass('hide');

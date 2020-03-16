@@ -59,8 +59,14 @@ class PowerWordsController extends Controller
     public function validateWord(Request $request, PowerWords $powerWords)
     {
     	$success = true;
+    	$id = $request->get('id');
     	$word = $request->get('word');
-    	$exists = $powerWords->where('word', $word)->get();
+
+    	if ($id) {
+    		$exists = $powerWords->whereIdNot($id)->where('word', $word)->get();
+    	} else {
+    		$exists = $powerWords->where('word', $word)->get();
+    	}
 
     	if (count($exists) > 0) {
     		$success = false;
