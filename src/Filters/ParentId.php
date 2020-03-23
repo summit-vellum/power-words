@@ -52,4 +52,29 @@ class ParentId extends Filter
         return PowerWords::whereIsParentPowerWords()->pluck('word', 'id')->toArray();
     }
 
+
+    public function js()
+    {
+    	return [
+    		//
+    	];
+    }
+
+    public function css()
+    {
+    	return [
+    		//
+    	];
+    }
+
+    public function html()
+    {
+    	return '';
+    }
+
+    public function label()
+    {
+    	return 'Arrangement';
+    }
+
 }
