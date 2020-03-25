@@ -15,6 +15,14 @@ class PowerWordsResource extends PowerWords implements Formable
         return [
             ID::make()->sortable()->searchable(),
 
+            Text::make('SEO Power Word', 'word')
+            	->rules('required')
+            	->classes('cf-input')
+            	->searchable()
+            	->help('Please enter unique power word')
+            	->setJs(['vendor/powerwords/js/validate_power_word.js'])
+            	->displayAsEdit(),
+
             Select::make('Parent Power Word', 'parent_id')
             	->relation('word', 'word')
             	->modify(function($parent_id, $powerWord){
@@ -23,15 +31,8 @@ class PowerWordsResource extends PowerWords implements Formable
             	->options(PowerWords::whereIsParentPowerWords()->pluck('word', 'id')->toArray())
             	->container([
 	            	'sectionName' => 'parent-word',
-	            	'view' => view('vellum::containers.render-select', ['yieldName'=>'parent-word'])
+	            	'view' => view('vellum::containers.row', ['yieldName'=>'parent-word', 'colClass'=>'cf-select-container'])
 	            ]),
-
-            Text::make('SEO Power Word', 'word')
-            	->rules('required')
-            	->classes('cf-input')
-            	->searchable()
-            	->help('Please enter unique power word')
-            	->setJs(['vendor/powerwords/js/validate_power_word.js']),
 
            	Text::make('Deleted at')
             ->hideFromIndex()
