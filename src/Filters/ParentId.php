@@ -74,7 +74,7 @@ class ParentId extends Filter
 
     public function label()
     {
-    	return 'Arrangement';
+    	return 'Parent power words';
     }
 
 }
