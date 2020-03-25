@@ -31,7 +31,7 @@ class PowerWordsResource extends PowerWords implements Formable
             	->options(PowerWords::whereIsParentPowerWords()->pluck('word', 'id')->toArray())
             	->container([
 	            	'sectionName' => 'parent-word',
-	            	'view' => view('vellum::containers.row', ['yieldName'=>'parent-word', 'colClass'=>'cf-select-container'])
+	            	'view' => view('vellum::containers.row-col', ['yieldName'=>'parent-word', 'colClass'=>'cf-select-container'])
 	            ]),
 
            	Text::make('Deleted at')
