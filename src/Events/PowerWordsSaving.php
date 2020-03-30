@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Quill\PowerWords\Events;
 
@@ -11,9 +11,9 @@ use Quill\PowerWords\Models\PowerWords;
 
 class PowerWordsSaving
 {
-    // use Dispatchable, InteractsWithSockets, 
+    // use Dispatchable, InteractsWithSockets,
     use SerializesModels;
- 
+
     public $data;
 
     /**
@@ -22,8 +22,10 @@ class PowerWordsSaving
      * @param  \Quill\PowerWords\Models\PowerWords  $data
      * @return void
      */
-    public function __construct(PowerWords $data) 
+    public function __construct(PowerWords $data)
     {
-        $this->data = $data;  
+    	$siteConfig = config('site');
+    	$data->site_id = (isset($siteConfig['site_id']) && $siteConfig['site_id'] != '') ? $siteConfig['site_id'] : 0;
+        $this->data = $data;
     }
 }

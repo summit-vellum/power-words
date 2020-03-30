@@ -7,6 +7,7 @@ use Quill\PowerWords\Models\PowerWords;
 use Vellum\Contracts\Formable;
 use Quill\Html\Fields\Text;
 use Quill\Html\Fields\Select;
+use Request;
 
 class PowerWordsResource extends PowerWords implements Formable
 {
