@@ -21,7 +21,12 @@ class RegisterPowerWordsModule
             'parent' => '',
             'model' => \Quill\PowerWords\Models\PowerWords::class,
             'permissions' => [],
-            'description' => ''
+            'description' => '',
+            'navHeader' => [
+            	'left' => 'SEO Power Words',
+            	'right' => 'New Power Word',
+            	'field' => 'word' //field to be rendered on the right side of the navheader on edit
+            ]
         ];
     }
 }
