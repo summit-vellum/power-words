@@ -14,7 +14,7 @@ class PowerWordsResource extends PowerWords implements Formable
     public function fields()
     {
         return [
-            ID::make()->sortable()->searchable(),
+            ID::make()->searchable(),
 
             Text::make('SEO Power Word', 'word')
             	->rules('required')
